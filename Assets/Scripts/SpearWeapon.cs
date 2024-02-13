@@ -9,7 +9,7 @@ public class SpearWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -22,7 +22,8 @@ public class SpearWeapon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
+            gameObject.SetActive(false);
+            transform.position = new Vector2(player.transform.position.x, player.transform.position.y);
         }
     }
 }
