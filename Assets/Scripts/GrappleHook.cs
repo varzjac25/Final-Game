@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpearWeapon : MonoBehaviour
+public class GrappleHook : MonoBehaviour
 {
-    [SerializeField]
-    GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +13,6 @@ public class SpearWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-
-        }
+        
     }
 }
