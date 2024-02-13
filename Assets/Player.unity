@@ -358,8 +358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   up: 119
   left: 97
-  right: 115
-  down: 100
+  right: 100
+  down: 115
   e: 101
   q: 113
   r: 114
