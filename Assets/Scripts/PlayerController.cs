@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     float dashSpeed;
     [SerializeField]
     float maxSpeed;
+    [SerializeField]
+    bool doubleJumpActive;
+    [SerializeField]
+    bool dashActive;
+    [SerializeField]
+    bool chargeJumpActive;
 
     float xSpawn;
     float ySpawn;
@@ -82,8 +88,12 @@ public class PlayerController : MonoBehaviour
         }
         if (isDashing == 0)
         {
-            if (Input.GetKey(up) && isOnGround)
-                timeHeld += Time.deltaTime;
+            if (chargeJumpActive)
+            {
+                if (Input.GetKey(up) && isOnGround)
+                    timeHeld += Time.deltaTime;
+            }
+            
             if (Input.GetKeyUp(up) && (isOnGround))
             {
                 if (timeHeld > 0.9)
@@ -103,13 +113,16 @@ public class PlayerController : MonoBehaviour
                 GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpForce * 0.6f, ForceMode2D.Impulse);
                 doubleJump = false;
             }
-            if (Input.GetKeyDown(e))
+            if (dashActive)
             {
-                isDashing = 2;
-            }
-            if (Input.GetKeyDown(q))
-            {
-                isDashing = 1;
+                if (Input.GetKeyDown(e))
+                {
+                    isDashing = 2;
+                }
+                if (Input.GetKeyDown(q))
+                {
+                    isDashing = 1;
+                }
             }
         }
         if (isDashing != 0)
@@ -126,53 +139,56 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        dashCool++;
-        if (dashCool < 100)
+        if (dashActive)
         {
-            isDashing = 0;
-        }
-        if (dashCool > 100)
-        {
-            dashCool = 100;
-        }
-        if (isDashing == 0)
-        {
-            if (Input.GetKey(left))
+            dashCool++;
+            if (dashCool < 100)
             {
-                direction = false;
-                transform.Translate(Vector2.left * speed);
+                isDashing = 0;
             }
-            if (Input.GetKey(right))
+            if (dashCool > 100)
             {
-                direction = true;
-                transform.Translate(Vector2.right * speed);
+                dashCool = 100;
             }
         }
-        else if (isDashing == 1)
-        {
-            dashTimer++;
+            if (isDashing == 0)
+            {
+                if (Input.GetKey(left))
+                {
+                    direction = false;
+                    transform.Translate(Vector2.left * speed);
+                }
+                if (Input.GetKey(right))
+                {
+                    direction = true;
+                    transform.Translate(Vector2.right * speed);
+                }
+            }
+            else if (isDashing == 1)
+            {
+                dashTimer++;
 
-            transform.Translate(Vector2.left * dashSpeed);
-            if (dashTimer > 8)
-            {
-                isDashing = 0;
-                dashTimer = 0;
-                dashCool = 0;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                transform.Translate(Vector2.left * dashSpeed);
+                if (dashTimer > 8)
+                {
+                    isDashing = 0;
+                    dashTimer = 0;
+                    dashCool = 0;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                }
             }
-        }
-        else
-        {
-            dashTimer++;
-            transform.Translate(Vector2.right * dashSpeed);
-            if (dashTimer > 8)
+            else
             {
-                isDashing = 0;
-                dashTimer = 0;
-                dashCool = 0;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                dashTimer++;
+                transform.Translate(Vector2.right * dashSpeed);
+                if (dashTimer > 8)
+                {
+                    isDashing = 0;
+                    dashTimer = 0;
+                    dashCool = 0;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                }
             }
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -199,12 +215,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
-            doubleJump = true;
+            if (doubleJumpActive)
+                doubleJump = true;
         }
         if (collision.gameObject.CompareTag("Checkpoint"))
         {
             isOnGround = false;
-            doubleJump = true;
+            if (doubleJumpActive)
+                doubleJump = true;
         }
     }
 
