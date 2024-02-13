@@ -8,6 +8,10 @@ public class GrappleHook : MonoBehaviour
     KeyCode grapple;
     [SerializeField]
     GameObject player;
+    [SerializeField]
+
+    bool grappleActive;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +24,11 @@ public class GrappleHook : MonoBehaviour
     {
         if (Input.GetKeyUp(grapple))
         {
-
+            grappleActive = !grappleActive;
+            if (grappleActive)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
