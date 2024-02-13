@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     bool dashActive;
     [SerializeField]
     bool chargeJumpActive;
+    [SerializeField]
+    bool grapplerActive;
 
     float xSpawn;
     float ySpawn;
