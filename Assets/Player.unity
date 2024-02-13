@@ -370,7 +370,7 @@ MonoBehaviour:
   maxSpeed: 15
   doubleJumpActive: 0
   dashActive: 0
-  chargeJumpActive: 0
+  chargeJumpActive: 1
   direction: 0
   timeHeld: 0
   dashCool: 0
