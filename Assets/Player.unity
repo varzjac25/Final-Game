@@ -356,14 +356,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b27d6a574decd49a7d052a0983b0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  up: 0
-  left: 0
-  right: 0
-  down: 0
-  e: 0
-  q: 0
-  r: 0
-  t: 0
+  up: 119
+  left: 97
+  right: 115
+  down: 100
+  e: 101
+  q: 113
+  r: 114
+  t: 116
   jumpForce: 0
   speed: 0
   dashSpeed: 0
