@@ -1014,6 +1014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5d9b5fbad7f07459b79153a7bdc4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grapple: 0
+  player: {fileID: 0}
+  grappleActive: 0
 --- !u!1 &1952243508
 GameObject:
   m_ObjectHideFlags: 0
