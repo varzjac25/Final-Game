@@ -995,7 +995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528563186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.88, y: -0.92916894, z: 0}
+  m_LocalPosition: {x: 2.35, y: -0.92916894, z: 0}
   m_LocalScale: {x: 0.3125, y: 0.34453127, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1014,9 +1014,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5d9b5fbad7f07459b79153a7bdc4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  grapple: 116
+  player: {fileID: 1952243508}
+  grappleForce: 10
+=======
   grapple: 0
   player: {fileID: 0}
   grappleActive: 0
+>>>>>>> ee4962d1d5b4929552342ef1e58331e72a1ab3d9
 --- !u!1 &1952243508
 GameObject:
   m_ObjectHideFlags: 0
