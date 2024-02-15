@@ -22,8 +22,8 @@ public class SpearWeapon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
-            transform.position = new Vector2(player.transform.position.x, player.transform.position.y);
+            gameObject.SetActive(true);
+            transform.position = new Vector2(player.transform.position.x, player.transform.position.y - 0.5f);
         }
     }
 }
