@@ -9,7 +9,6 @@ public class GrappleHook : MonoBehaviour
     [SerializeField]
     GameObject player;
     [SerializeField]
-    float grappleForce;
 
     bool grappleActive;
     
@@ -17,8 +16,7 @@ public class GrappleHook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grappleActive = false;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -26,18 +24,11 @@ public class GrappleHook : MonoBehaviour
     {
         if (Input.GetKeyUp(grapple))
         {
-            Debug.Log("entered");
+            grappleActive = !grappleActive;
             if (grappleActive)
             {
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.SetActive(false);
             }
-            else
-            {
-                gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                gameObject.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.6f);
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * grappleForce, ForceMode2D.Impulse);
-            }
-            grappleActive = !grappleActive;
         }
     }
 }
