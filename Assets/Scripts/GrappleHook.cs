@@ -8,7 +8,7 @@ public class GrappleHook : MonoBehaviour
     KeyCode grapple;
     [SerializeField]
     GameObject player;
-    [SerializeField]
+    [SerializeField]    
 
     bool grappleActive;
     
