@@ -11,21 +11,27 @@ public class GrappleHook : MonoBehaviour
     [SerializeField]
     float grappleForce;
     bool grappleActive;
+    bool frozen;
+    Vector2 frozenPos;
     
 
     // Start is called before the first frame update
     void Start()
     {
         grappleActive = false;
+        frozen = false;
         gameObject.GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (frozen)
+            transform.position = frozenPos;
         if (Input.GetKeyUp(grapple))
         {
             grappleActive = !grappleActive;
+            frozen = false;
             if (grappleActive)
             {
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -39,6 +45,11 @@ public class GrappleHook : MonoBehaviour
                 gameObject.GetComponent<Renderer>().enabled = false;
             }
         }
+        if (GetComponent<Rigidbody2D>().velocity.y < 0 && !frozen)
+        {
+            gameObject.GetComponent<Renderer>().enabled = false;
+            grappleActive = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,6 +58,8 @@ public class GrappleHook : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             GetComponent<Rigidbody2D>().gravityScale = 0;
+            frozenPos = transform.position;
+            frozen = true;
         }
     }
 }
