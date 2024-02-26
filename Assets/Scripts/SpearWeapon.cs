@@ -6,7 +6,8 @@ public class SpearWeapon : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-
+    [SerializeField]
+    KeyCode y;
 
     bool hasSpear = false;
     public int spearDuration = 50;
@@ -22,8 +23,8 @@ public class SpearWeapon : MonoBehaviour
     {
         while (hasSpear)
         {
-            transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 2);
-            if (Input.GetKeyDown(KeyCode.Space))
+            
+            if (Input.GetKeyDown(y))
             {
                 Debug.Log("Spear Weapon Active");
                 gameObject.SetActive(true);
@@ -38,7 +39,6 @@ public class SpearWeapon : MonoBehaviour
             hasSpear = true;
             StartCoroutine(SpearCooldown());
             gameObject.SetActive(false);
-            
             
         }
     }
