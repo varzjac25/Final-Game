@@ -9,7 +9,7 @@ public class SpearWeapon : MonoBehaviour
 
 
     bool hasSpear = false;
-    public int spearDuration = 5;
+    public int spearDuration = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,8 @@ public class SpearWeapon : MonoBehaviour
     {
         while (hasSpear)
         {
-            transform.position = new Vector2(player.transform.position.x, player.transform.position.y);
-            if (Input.GetKeyDown(KeyCode.Y))
+            transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 2);
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Spear Weapon Active");
                 gameObject.SetActive(true);
@@ -35,9 +35,10 @@ public class SpearWeapon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            hasSpear = true;
             StartCoroutine(SpearCooldown());
             gameObject.SetActive(false);
-            hasSpear = true;
+            
             
         }
     }
