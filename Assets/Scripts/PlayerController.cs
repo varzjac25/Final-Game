@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool grapplerActive;
 
+    public GameObject grappler;
+    public GrappleHook GrappleHook;
+    bool grapplerStick;
+
     float xSpawn;
     float ySpawn;
     public bool direction;
@@ -59,6 +63,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GrappleHook = grappler.GetComponent<GrappleHook>();
         myTrail = gameObject.GetComponent<TrailRenderer>();
         direction = true;
         xSpawn = 0;
@@ -75,6 +80,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.grapplerStick = GrappleHook.grapplerStick;
         if (GetComponent<Rigidbody2D>().velocity.magnitude > maxSpeed)
         {
             GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity.normalized * maxSpeed;

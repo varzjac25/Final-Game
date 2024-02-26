@@ -13,11 +13,13 @@ public class GrappleHook : MonoBehaviour
     bool grappleActive;
     bool frozen;
     Vector2 frozenPos;
+    public bool grapplerStick;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        grapplerStick = false;
         grappleActive = false;
         frozen = false;
         gameObject.GetComponent<Renderer>().enabled = false;
@@ -43,12 +45,14 @@ public class GrappleHook : MonoBehaviour
             else
             {
                 gameObject.GetComponent<Renderer>().enabled = false;
+                grapplerStick = false;
             }
         }
         if (GetComponent<Rigidbody2D>().velocity.y < 0 && !frozen)
         {
             gameObject.GetComponent<Renderer>().enabled = false;
             grappleActive = false;
+            grapplerStick = false;
         }
     }
 
@@ -60,6 +64,13 @@ public class GrappleHook : MonoBehaviour
             GetComponent<Rigidbody2D>().gravityScale = 0;
             frozenPos = transform.position;
             frozen = true;
+            grapplerStick = true;
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().enabled = false;
+            grappleActive = false;
+            grapplerStick = false;
         }
     }
 }
