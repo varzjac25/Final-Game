@@ -217,8 +217,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
-            if (doubleJumpActive)
-                doubleJump = true;
+            if (gameObject.transform.position.y > collision.gameObject.transform.position.y) { 
+                if (doubleJumpActive)
+                    doubleJump = true;
+            }
         }
         if (collision.gameObject.CompareTag("Checkpoint"))
         {
