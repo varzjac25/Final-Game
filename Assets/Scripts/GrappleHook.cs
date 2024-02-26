@@ -28,6 +28,7 @@ public class GrappleHook : MonoBehaviour
             grappleActive = !grappleActive;
             if (grappleActive)
             {
+                GetComponent<Rigidbody2D>().gravityScale = 1;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 gameObject.GetComponent<Renderer>().enabled = true;
                 transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.5f);
@@ -44,7 +45,8 @@ public class GrappleHook : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
-
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            GetComponent<Rigidbody2D>().gravityScale = 0;
         }
     }
 }
