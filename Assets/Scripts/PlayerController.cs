@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
         this.grapplerStick = GrappleHook.grapplerStick;
         if (grapplerStick)
         {
+            GetComponent<Rigidbody2D>().velocity *= 0;
             GetComponent<Rigidbody2D>().gravityScale = 0;
         }
         else

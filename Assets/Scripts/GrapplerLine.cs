@@ -7,7 +7,7 @@ public class GrapplerLine : MonoBehaviour
     public GameObject Player;
     public GameObject grappler;
     public GrappleHook GrappleHook;
-    public LineRenderer GrappleLine;
+    LineRenderer GrappleLine;
     bool grapplerStick;
     bool grappleActive;
 
@@ -15,6 +15,8 @@ public class GrapplerLine : MonoBehaviour
     void Start()
     {
         GrappleHook = grappler.GetComponent<GrappleHook>();
+        GrappleLine = GetComponent<LineRenderer>();
+        GrappleLine.material.SetColor("_Color", Color.white);
     }
 
     // Update is called once per frame
@@ -22,15 +24,12 @@ public class GrapplerLine : MonoBehaviour
     {
         this.grapplerStick = GrappleHook.grapplerStick;
         this.grappleActive = GrappleHook.grappleActive;
-        if (grapplerStick)
-        {
-            GrappleLine.SetPosition(0, new Vector3(Player.transform.position.x, Player.transform.position.y));
-            GrappleLine.SetPosition(1, new Vector3(grappler.transform.position.x, grappler.transform.position.y));
-        }   
         if (grapplerStick || grappleActive)
         {
+            GrappleLine.SetPosition(0, Player.transform.position);
+            GrappleLine.SetPosition(1, grappler.transform.position);
             gameObject.GetComponent<Renderer>().enabled = true;
-        }
+        }   
         else
         {
             gameObject.GetComponent<Renderer>().enabled = false;

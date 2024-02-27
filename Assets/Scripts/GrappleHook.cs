@@ -74,6 +74,10 @@ public class GrappleHook : MonoBehaviour
             frozen = true;
             grapplerStick = true;
         }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+
+        }
         else
         {
             gameObject.GetComponent<Renderer>().enabled = false;
