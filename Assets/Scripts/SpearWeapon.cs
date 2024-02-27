@@ -8,6 +8,8 @@ public class SpearWeapon : MonoBehaviour
     GameObject player;
 
     bool hasSpear = false;
+    bool goUp = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,27 @@ public class SpearWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (gameObject.transform.position.y >= -2.57)
+        {
+            goUp = false;
+        }
+        else if (gameObject.transform.position.y <= -3.25)
+        {
+            goUp = true;
+        }
+
+        if (goUp)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + 0.01f);
+        }
+        else if (!goUp)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
+        }
+        
+
+
+
         if (hasSpear)
         {
             if (Input.GetKeyDown(KeyCode.Space))
