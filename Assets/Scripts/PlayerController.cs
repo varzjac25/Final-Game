@@ -80,8 +80,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(grapplerStick);
         this.grapplerStick = GrappleHook.grapplerStick;
+        if (grapplerStick)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
         if (GetComponent<Rigidbody2D>().velocity.magnitude > maxSpeed)
         {
             GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity.normalized * maxSpeed;
@@ -102,25 +109,34 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKey(up) && isOnGround)
                     timeHeld += Time.deltaTime;
             }
-            
-            if (Input.GetKeyUp(up) && (isOnGround))
-            {
-                if (timeHeld > 0.9)
-                    timeHeld = 0.9f;
-                if (timeHeld < 0.5)
-                    timeHeld = 0.5f;
-                GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpForce * timeHeld, ForceMode2D.Impulse);
-                timeHeld = 0;
+            if (!grapplerStick) { 
+                if (Input.GetKeyUp(up) && (isOnGround))
+                {
+                    if (timeHeld > 0.9)
+                        timeHeld = 0.9f;
+                    if (timeHeld < 0.5)
+                        timeHeld = 0.5f;
+                    GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpForce * timeHeld, ForceMode2D.Impulse);
+                    timeHeld = 0;
+                }
+                else if (!isOnGround)
+                {
+                    timeHeld = 0;
+                }
+                if (Input.GetKeyDown(up) && (doubleJump))
+                {
+                    GetComponent<Rigidbody2D>().velocity *= 0.1f;
+                    GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpForce * 0.6f, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
             }
-            else if (!isOnGround)
+            if (grapplerStick && Input.GetKey(up))
             {
-                timeHeld = 0;
+                transform.position = new Vector2(transform.position.x, transform.position.y + 0.01f);
             }
-            if (Input.GetKeyDown(up) && (doubleJump))
+            if (grapplerStick && Input.GetKey(down))
             {
-                GetComponent<Rigidbody2D>().velocity *= 0.1f;
-                GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpForce * 0.6f, ForceMode2D.Impulse);
-                doubleJump = false;
+                transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
             }
             if (dashActive)
             {
@@ -162,17 +178,25 @@ public class PlayerController : MonoBehaviour
         }
             if (isDashing == 0)
             {
-                if (Input.GetKey(left))
+                if (Input.GetKey(left) && !grapplerStick)
                 {
                     direction = false;
                     transform.Translate(Vector2.left * speed);
                 }
-                if (Input.GetKey(right))
+                if (Input.GetKey(right) && !grapplerStick)
                 {
                     direction = true;
                     transform.Translate(Vector2.right * speed);
                 }
-            }
+                if (Input.GetKey(left))
+                {
+
+                }
+                if (Input.GetKey(right))
+                {
+
+                }
+        }
             else if (isDashing == 1)
             {
                 dashTimer++;
