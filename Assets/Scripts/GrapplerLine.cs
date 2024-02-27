@@ -25,7 +25,7 @@ public class GrapplerLine : MonoBehaviour
         if (grapplerStick)
         {
             GrappleLine.SetPosition(0, new Vector3(Player.transform.position.x, Player.transform.position.y));
-            GrappleLine.SetPosition(1, new Vector3(grappler.transform.position.x - 0.5f, grappler.transform.position.y + 0.5f));
+            GrappleLine.SetPosition(1, new Vector3(grappler.transform.position.x, grappler.transform.position.y));
         }   
         if (grapplerStick || grappleActive)
         {
