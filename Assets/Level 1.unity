@@ -475,8 +475,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.49322265
+        value: 0.49389964
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -576,6 +576,8 @@ MonoBehaviour:
   grapple: 116
   player: {fileID: 1952243508}
   grappleForce: 10
+  grappleActive: 0
+  Player: {fileID: 1952243508}
   grapplerStick: 0
 --- !u!50 &1028803743
 Rigidbody2D:
