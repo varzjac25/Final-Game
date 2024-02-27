@@ -6,11 +6,8 @@ public class SpearWeapon : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    [SerializeField]
-    KeyCode y;
 
     bool hasSpear = false;
-    public int spearDuration = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +18,12 @@ public class SpearWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        while (hasSpear)
+        if (hasSpear)
         {
-            
-            if (Input.GetKeyDown(y))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Spear Weapon Active");
-                gameObject.SetActive(true);
+
             }
         }
     }
@@ -37,15 +33,10 @@ public class SpearWeapon : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             hasSpear = true;
-            StartCoroutine(SpearCooldown());
-            gameObject.SetActive(false);
-            
-        }
-    }
+            transform.position = new Vector2(0, -1000);
+            Destroy(gameObject);
 
-    IEnumerator SpearCooldown()
-    {
-        yield return new WaitForSeconds(spearDuration);
-        hasSpear = false;
+
+        }
     }
 }
