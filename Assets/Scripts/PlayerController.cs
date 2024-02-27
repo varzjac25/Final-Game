@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(grapplerStick);
         this.grapplerStick = GrappleHook.grapplerStick;
         if (GetComponent<Rigidbody2D>().velocity.magnitude > maxSpeed)
         {

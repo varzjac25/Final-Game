@@ -424,6 +424,7 @@ MonoBehaviour:
   grapple: 116
   player: {fileID: 1952243508}
   grappleForce: 10
+  grapplerStick: 0
 --- !u!50 &1028803743
 Rigidbody2D:
   serializedVersion: 4
@@ -654,6 +655,8 @@ MonoBehaviour:
   dashActive: 0
   chargeJumpActive: 1
   grapplerActive: 0
+  grappler: {fileID: 1028803741}
+  GrappleHook: {fileID: 1028803742}
   direction: 0
   timeHeld: 0
   dashCool: 0
@@ -1051,4 +1054,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  y: 0
   spearDuration: 5
