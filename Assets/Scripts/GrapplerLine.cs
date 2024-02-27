@@ -9,6 +9,7 @@ public class GrapplerLine : MonoBehaviour
     public GrappleHook GrappleHook;
     public LineRenderer GrappleLine;
     bool grapplerStick;
+    bool grappleActive;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,16 @@ public class GrapplerLine : MonoBehaviour
     void Update()
     {
         this.grapplerStick = GrappleHook.grapplerStick;
+        this.grappleActive = GrappleHook.grappleActive;
         if (grapplerStick)
         {
-            gameObject.GetComponent<Renderer>().enabled = true;
             GrappleLine.SetPosition(0, new Vector3(Player.transform.position.x, Player.transform.position.y));
             GrappleLine.SetPosition(1, new Vector3(grappler.transform.position.x - 0.5f, grappler.transform.position.y + 0.5f));
         }   
+        if (grapplerStick || grappleActive)
+        {
+            gameObject.GetComponent<Renderer>().enabled = true;
+        }
         else
         {
             gameObject.GetComponent<Renderer>().enabled = false;

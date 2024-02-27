@@ -10,7 +10,7 @@ public class GrappleHook : MonoBehaviour
     GameObject player;
     [SerializeField]
     float grappleForce;
-    bool grappleActive;
+    public bool grappleActive;
     bool frozen;
     Vector2 frozenPos;
     public bool grapplerStick;
