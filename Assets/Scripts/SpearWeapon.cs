@@ -20,7 +20,7 @@ public class SpearWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameObject.transform.position.y >= -2.57)
+        if (gameObject.transform.position.y >= -2.80)
         {
             goUp = false;
         }
@@ -31,11 +31,11 @@ public class SpearWeapon : MonoBehaviour
 
         if (goUp)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 0.01f);
+            transform.position = new Vector2(transform.position.x, transform.position.y + 0.015f);
         }
         else if (!goUp)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.015f);
         }
         
 
@@ -43,7 +43,7 @@ public class SpearWeapon : MonoBehaviour
 
         if (hasSpear)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 Debug.Log("Spear Weapon Active");
 
@@ -58,8 +58,6 @@ public class SpearWeapon : MonoBehaviour
             hasSpear = true;
             transform.position = new Vector2(0, -1000);
             Destroy(gameObject);
-
-
         }
     }
 }
