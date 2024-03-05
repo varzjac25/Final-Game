@@ -43,8 +43,9 @@ public class SpearWeapon : MonoBehaviour
 
         if (hasSpear)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Y))
             {
+                Instantiate(gameObject, player.transform.position, player.transform.rotation);
                 Debug.Log("Spear Weapon Active");
 
             }
