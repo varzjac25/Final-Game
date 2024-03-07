@@ -20,11 +20,11 @@ public class SpearWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameObject.transform.position.y >= -2.80)
+        if (gameObject.transform.position.y >= -2.50)
         {
             goUp = false;
         }
-        else if (gameObject.transform.position.y <= -3.25)
+        else if (gameObject.transform.position.y <= -3.0f)
         {
             goUp = true;
         }
