@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
     int deaths;
 
     public float timeHeld;
+    public float grapplerSpeed;
+    public float grapplerVert;
     bool isOnGround;
     bool doubleJump;
     int isDashing;
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
         this.grapplerStick = GrappleHook.grapplerStick;
         if (grapplerStick)
         {
-            GetComponent<Rigidbody2D>().velocity *= 0;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             GetComponent<Rigidbody2D>().gravityScale = 0;
         }
         else
@@ -189,15 +191,56 @@ public class PlayerController : MonoBehaviour
                     direction = true;
                     transform.Translate(Vector2.right * speed);
                 }
-                if (Input.GetKey(left))
+                if (Input.GetKey(left) && grapplerStick)
                 {
-
+                    if (transform.position.x <= GrappleHook.transform.position.x)
+                    {
+                    transform.Translate(Vector2.left * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.3f);
+                    transform.Translate(Vector2.up * grapplerVert * (GrappleHook.transform.position.y - transform.position.y) * 0.03f);
+                    }
+                    else
+                    {
+                        transform.Translate(Vector2.left * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.5f);
+                        transform.Translate(Vector2.down * grapplerVert * (GrappleHook.transform.position.y - transform.position.y) * 0.05f);
+                    }
+                    if (Mathf.Abs(GrappleHook.transform.position.x - transform.position.x) > GrappleHook.transform.position.y - transform.position.y)
+                    {
+                        transform.Translate(Vector2.right * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.3f);
+                        transform.Translate(Vector2.down * grapplerVert * 0.03f);
+                    }
                 }
-                if (Input.GetKey(right))
+                else if (Input.GetKey(right) && grapplerStick)
                 {
-
+                    if (transform.position.x >= GrappleHook.transform.position.x)
+                    {
+                        transform.Translate(Vector2.right * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.3f);
+                        transform.Translate(Vector2.up * grapplerVert * (GrappleHook.transform.position.y - transform.position.y) * 0.03f);
+                    }
+                    else
+                    {
+                        transform.Translate(Vector2.right * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.5f);
+                        transform.Translate(Vector2.down * grapplerVert * (GrappleHook.transform.position.y - transform.position.y) * 0.05f);
+                    }
+                    if (Mathf.Abs(GrappleHook.transform.position.x - transform.position.x) > GrappleHook.transform.position.y - transform.position.y)
+                    {
+                        transform.Translate(Vector2.left * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.3f);
+                        transform.Translate(Vector2.down * grapplerVert * 0.03f);
+                    }
                 }
-        }
+                else if (grapplerStick)
+                {
+                    if (transform.position.x > GrappleHook.transform.position.x)
+                    {
+                        transform.Translate(Vector2.left * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.2f);
+                        transform.Translate(Vector2.down * grapplerVert * (GrappleHook.transform.position.y - transform.position.y) * 0.02f);
+                    }
+                    else if (transform.position.x < GrappleHook.transform.position.x)
+                    {
+                        transform.Translate(Vector2.right * grapplerSpeed * ((GrappleHook.transform.position.y - transform.position.y) - Mathf.Abs(GrappleHook.transform.position.x - transform.position.x)) * 0.2f);
+                        transform.Translate(Vector2.down * grapplerVert * (GrappleHook.transform.position.y - transform.position.y) * 0.02f);
+                    }
+                }
+            }
             else if (isDashing == 1)
             {
                 dashTimer++;
