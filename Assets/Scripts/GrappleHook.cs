@@ -20,6 +20,7 @@ public class GrappleHook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector2(0, -100);
         grapplerStick = false;
         grappleActive = false;
         frozen = false;
