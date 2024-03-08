@@ -285,6 +285,11 @@ public class PlayerController : MonoBehaviour
             xSpawn = collision.transform.position.x;
             ySpawn = collision.transform.position.y + 10;
         }
+        if (collision.gameObject.CompareTag("Grappler"))
+        {
+            Debug.Log("grappler");
+            GrappleHook.grapplerEnabled = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
