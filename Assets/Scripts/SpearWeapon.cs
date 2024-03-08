@@ -9,12 +9,16 @@ public class SpearWeapon : MonoBehaviour
 
     bool hasSpear = false;
     bool goUp = false;
+    LineRenderer spearLine;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(true);
+        spearLine = GetComponent<LineRenderer>();
+        spearLine.material.SetColor("_Color", Color.white);
     }
 
     // Update is called once per frame
@@ -43,12 +47,10 @@ public class SpearWeapon : MonoBehaviour
 
         if (hasSpear)
         {
-            if (Input.GetKey(KeyCode.Y))
-            {
-                Instantiate(gameObject, player.transform.position, player.transform.rotation);
-                Debug.Log("Spear Weapon Active");
-
-            }
+            Debug.Log("Spear Weapon Initiated");
+            transform.position = new Vector2(player.transform.position.x + 1.1f, player.transform.position.y + 0.05f);
+            transform.Rotate(0, 0, 0);
+            gameObject.GetComponent<Renderer>().enabled = true;
         }
     }
 
@@ -58,7 +60,7 @@ public class SpearWeapon : MonoBehaviour
         {
             hasSpear = true;
             transform.position = new Vector2(0, -1000);
-            Destroy(gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 }

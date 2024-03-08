@@ -25,7 +25,7 @@ public class GrapplerLine : MonoBehaviour
         this.grapplerStick = GrappleHook.grapplerStick;
         this.grappleActive = GrappleHook.grappleActive;
         if (grapplerStick || grappleActive)
-        {
+        {   
             GrappleLine.SetPosition(0, Player.transform.position);
             GrappleLine.SetPosition(1, grappler.transform.position);
             gameObject.GetComponent<Renderer>().enabled = true;
