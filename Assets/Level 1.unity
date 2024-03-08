@@ -896,6 +896,8 @@ MonoBehaviour:
   GrappleHook: {fileID: 1028803742}
   direction: 0
   timeHeld: 0
+  grapplerSpeed: 0.1
+  grapplerVert: 0.5
   dashCool: 0
 --- !u!61 &1952243512
 BoxCollider2D:
