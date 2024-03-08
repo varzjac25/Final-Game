@@ -15,7 +15,7 @@ public class GrappleHook : MonoBehaviour
     bool frozen;
     Vector2 frozenPos;
     public bool grapplerStick;
-    
+    public bool grapplerEnabled;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class GrappleHook : MonoBehaviour
         grappleActive = false;
         frozen = false;
         gameObject.GetComponent<Renderer>().enabled = false;
+        grapplerEnabled = false;
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class GrappleHook : MonoBehaviour
         }
         if (frozen)
             transform.position = frozenPos;
-        if (Input.GetKeyUp(grapple))
+        if (Input.GetKeyUp(grapple) && grapplerEnabled)
         {
             grappleActive = !grappleActive;
             frozen = false;
