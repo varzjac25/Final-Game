@@ -31,7 +31,7 @@ public class GrappleHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < Player.transform.position.y)
+        if (transform.position.y - 0.5 < Player.transform.position.y && grapplerStick)
         {
             grappleActive = false;
             grapplerStick = false;
