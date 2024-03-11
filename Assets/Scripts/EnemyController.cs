@@ -22,9 +22,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Spear"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            health -= 5;
+            health -= 70;
         }
     }
 }
