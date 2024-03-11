@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            health -= 70;
+            health -= 100;
         }
     }
 }
