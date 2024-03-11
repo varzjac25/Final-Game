@@ -1176,7 +1176,7 @@ Transform:
   m_Children:
   - {fileID: 2045350687}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952243508
 GameObject:
@@ -1298,8 +1298,8 @@ MonoBehaviour:
   GrappleHook: {fileID: 1028803742}
   direction: 0
   timeHeld: 0
-  grapplerSpeed: 0
-  grapplerVert: 0
+  grapplerSpeed: 0.1
+  grapplerVert: 0.15
   dashCool: 0
 --- !u!61 &1952243512
 BoxCollider2D:
