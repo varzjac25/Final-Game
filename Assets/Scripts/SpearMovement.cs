@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SpearAbility : MonoBehaviour
+public class SpearMovement: MonoBehaviour
 {
     public GameObject Player;
     public SpearWeapon SpearWeapon;
-    public GameObject SpearLine;
+    LineRenderer SpearLine;
     // Start is called before the first frame update
     void Start()
     {

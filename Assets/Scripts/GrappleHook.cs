@@ -7,6 +7,10 @@ public class GrappleHook : MonoBehaviour
     [SerializeField]
     KeyCode grapple;
     [SerializeField]
+    KeyCode left;
+    [SerializeField]
+    KeyCode right;
+    [SerializeField]
     GameObject player;
     [SerializeField]
     float grappleForce;
@@ -31,12 +35,15 @@ public class GrappleHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < Player.transform.position.y)
+        if (!grapplerStick)
+        {
+            transform.position = new Vector2(Player.transform.position.x, transform.position.y);
+        }
+        if (transform.position.y - 0.5 < Player.transform.position.y && grapplerStick)
         {
             grappleActive = false;
             grapplerStick = false;
             gameObject.GetComponent<Renderer>().enabled = false;
-
         }
         if (frozen)
             transform.position = frozenPos;
