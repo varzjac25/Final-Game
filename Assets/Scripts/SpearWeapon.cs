@@ -12,7 +12,6 @@ public class SpearWeapon : MonoBehaviour
 
     bool hasSpear = false;
     bool goUp = false;
-    bool floating = true;
 
 
 
@@ -25,21 +24,23 @@ public class SpearWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (floating) {
-            if (gameObject.transform.position.y >= -2.50) {
-                goUp = false;
-            }
-            else if (gameObject.transform.position.y <= -3.0f) {
-            goUp = true;
-            }
-            if (goUp) {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 0.015f);
-            }
-            else if (!goUp) {
-            transform.position = new Vector2(transform.position.x, transform.position.y - 0.015f);
-            }
+        if (gameObject.transform.position.y >= -2.50)
+        {
+            goUp = false;
         }
-        
+        else if (gameObject.transform.position.y <= -3.0f)
+        {
+            goUp = true;
+        }
+
+        if (goUp)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + 0.015f);
+        }
+        else if (!goUp)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.015f);
+        }
         
 
 
@@ -48,15 +49,9 @@ public class SpearWeapon : MonoBehaviour
         {
             if (Input.GetKey(spearKey))
             {
-                GetComponent<Rigidbody2D>().gravityScale = 1;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                gameObject.GetComponent<Renderer>().enabled = true;
+                Debug.Log("Spear Weapon Initiated");
                 transform.position = new Vector2(player.transform.position.x + 1.1f, player.transform.position.y + 0.05f);
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-
-                //Debug.Log("Spear Weapon Initiated");
-                //transform.position = new Vector2(player.transform.position.x + 1.1f, player.transform.position.y + 0.05f);
-                //gameObject.GetComponent<Renderer>().enabled = true;
+                gameObject.GetComponent<Renderer>().enabled = true;
             }
         }
     }
@@ -68,8 +63,7 @@ public class SpearWeapon : MonoBehaviour
             hasSpear = true;
             transform.position = new Vector2(0, -1000);
             gameObject.GetComponent<Renderer>().enabled = false;
-            transform.eulerAngles = new Vector2(0, 0);
-            floating = false;
+            transform.Rotate(0, 0, -15.16f);
         }
     }
 }
