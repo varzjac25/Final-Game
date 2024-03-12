@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (health == 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            health -= 100;
+            health -= 70;
         }
     }
 }
